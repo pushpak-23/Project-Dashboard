@@ -1,0 +1,38 @@
+{
+  "categories": ["compute", "storage", "network"],
+
+  "compute": [
+    { "name": "compute01", "mgmt_ip": "192.168.0.17", "internal_ip": "192.168.101.17", "ssh_user": "root", "url": "http://192.168.0.17", "icon": "Tyron", "x": 20, "y": 40 },
+    { "name": "compute02", "mgmt_ip": "192.168.0.18", "internal_ip": "192.168.101.18", "ssh_user": "root", "url": "http://192.168.0.18", "icon": "dell", "x": 25, "y": 45 },
+    { "name": "compute03", "mgmt_ip": "192.168.0.19", "internal_ip": "10.10.0.19", "ssh_user": "root", "url": "http://192.168.0.19", "icon": "dell", "x": 30, "y": 50 },
+    { "name": "compute04", "mgmt_ip": "192.168.0.20", "internal_ip": "10.10.0.20", "ssh_user": "root", "url": "http://192.168.0.20", "icon": "hp", "x": 35, "y": 55 },
+    { "name": "compute05", "mgmt_ip": "192.168.0.21", "internal_ip": "10.10.0.21", "ssh_user": "root", "url": "http://192.168.0.21", "icon": "hp", "x": 40, "y": 60 },
+    { "name": "compute06", "mgmt_ip": "192.168.0.22", "internal_ip": "10.10.0.22", "ssh_user": "root", "url": "http://192.168.0.22", "icon": "hp", "x": 45, "y": 65 },
+    { "name": "compute07", "mgmt_ip": "192.168.0.23", "internal_ip": "10.10.0.23", "ssh_user": "root", "url": "http://192.168.0.23", "icon": "HP", "x": 50, "y": 40 },
+    { "name": "compute08", "mgmt_ip": "192.168.0.24", "internal_ip": "10.10.0.24", "ssh_user": "root", "url": "http://192.168.0.24", "icon": "dell", "x": 55, "y": 45 },
+    { "name": "compute09", "mgmt_ip": "192.168.0.25", "internal_ip": "10.10.0.25", "ssh_user": "root", "url": "http://192.168.0.25", "icon": "dell", "x": 60, "y": 50 },
+    { "name": "compute10", "mgmt_ip": "192.168.0.26", "internal_ip": "10.10.0.26", "ssh_user": "root", "url": "http://192.168.0.26", "icon": "dell", "x": 65, "y": 55 },
+    { "name": "compute11", "mgmt_ip": "192.168.0.27", "internal_ip": "10.10.0.27", "ssh_user": "root", "url": "http://192.168.0.27", "icon": "dell", "x": 70, "y": 60 },
+    { "name": "compute12", "mgmt_ip": "192.168.0.28", "internal_ip": "10.10.0.28", "ssh_user": "root", "url": "http://192.168.0.28", "icon": "dell", "x": 75, "y": 65 },
+    { "name": "compute13", "mgmt_ip": "192.168.0.29", "internal_ip": "10.10.0.29", "ssh_user": "root", "url": "http://192.168.0.29", "icon": "dell", "x": 80, "y": 40 },
+    { "name": "compute14", "mgmt_ip": "192.168.0.30", "internal_ip": "10.10.0.30", "ssh_user": "root", "url": "http://192.168.0.30", "icon": "dell", "x": 85, "y": 45 },
+    { "name": "compute15", "mgmt_ip": "192.168.0.31", "internal_ip": "10.10.0.31", "ssh_user": "root", "url": "http://192.168.0.31", "icon": "dell", "x": 90, "y": 50 }
+  ],
+
+  "storage": [
+    { "name": "storage01", "mgmt_ip": "192.168.0.17", "internal_ip": "10.20.0.17", "ssh_user": "admin", "url": "http://192.168.0.17", "icon": "synology", "x": 20, "y": 30 },
+    { "name": "storage02", "mgmt_ip": "192.168.1.12", "internal_ip": "10.20.0.12", "ssh_user": "admin", "url": "http://192.168.1.12", "icon": "dell", "x": 30, "y": 35 },
+    { "name": "storage03", "mgmt_ip": "192.168.1.13", "internal_ip": "10.20.0.13", "ssh_user": "admin", "url": "http://192.168.1.13", "icon": "dell", "x": 40, "y": 40 },
+    { "name": "storage04", "mgmt_ip": "192.168.1.14", "internal_ip": "10.20.0.14", "ssh_user": "admin", "url": "http://192.168.1.14", "icon": "dell", "x": 50, "y": 45 },
+    { "name": "storage05", "mgmt_ip": "192.168.1.15", "internal_ip": "10.20.0.15", "ssh_user": "admin", "url": "http://192.168.1.15", "icon": "dell", "x": 60, "y": 50 },
+    { "name": "storage06", "mgmt_ip": "192.168.1.16", "internal_ip": "10.20.0.16", "ssh_user": "admin", "url": "http://192.168.1.16", "icon": "dell", "x": 70, "y": 55 },
+    { "name": "storage07", "mgmt_ip": "192.168.1.17", "internal_ip": "10.20.0.17", "ssh_user": "admin", "url": "http://192.168.1.17", "icon": "dell", "x": 80, "y": 60 }
+  ],
+
+  "network": [
+    { "name": "switch01", "mgmt_ip": "192.168.90.2", "internal_ip": "10.30.0.2", "ssh_user": "admin", "url": "http://192.168.90.2", "icon": "Dell", "x": 20, "y": 20 },
+    { "name": "switch02", "mgmt_ip": "192.168.90.3", "internal_ip": "10.30.0.3", "ssh_user": "admin", "url": "http://192.168.90.3", "icon": "cisco", "x": 30, "y": 25 },
+    { "name": "firewall01", "mgmt_ip": "192.168.0.1", "internal_ip": "10.30.0.1", "ssh_user": "admin", "url": "http://192.168.0.1", "icon": "sonicwall", "x": 70, "y": 25 },
+    { "name": "firewall02", "mgmt_ip": "192.168.101.1", "internal_ip": "10.30.0.101", "ssh_user": "admin", "url": "http://192.168.101.1", "icon": "pfsense", "x": 80, "y": 30 }
+  ]
+}

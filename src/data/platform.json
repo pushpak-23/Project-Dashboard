@@ -1,0 +1,109 @@
+{
+  "platforms": [
+    {
+      "name": "Kubernetes",
+      "icon": "kubernetes",
+      "url": "https://k8s.local",
+      "desc": "Container Orchestration",
+      "clusters": [
+        {
+          "name": "K8s-INFRA",
+          "url": "https://kubernete.dashboard.infra.cluster.local",
+          "icon": "kubernetes",
+          "details": {
+            "nodes": 8,
+            "cpu": "128 Cores",
+            "memory": "723 GB",
+            "pods": 146,
+            "status": "Healthy",
+            "config": "/configs/infra-cluster"
+          }
+        },
+        {
+          "name": "K8s-DPROC",
+          "url": "https://kubernete.dashboard.dproc.serve.cluster.local",
+          "icon": "kubernetes",
+          "details": {
+            "nodes": 9,
+            "cpu": "240 Cores",
+            "memory": "849 GB",
+            "pods": 74,
+            "status": "Healthy",
+            "config": "/configs/dproc-cluster"
+          }      
+        },        
+        {
+          "name": "K8s-INGST",
+          "url": "https://kubernete.dashboard.ingst.cnsmr.cluster.local",
+          "icon": "kubernetes",
+          "details": {
+            "nodes": 7,
+            "cpu": "88 Cores",
+            "memory": "550 GB",
+            "pods": 60,
+            "status": "Healthy",
+            "config": "/configs/ingst-cluster"
+          }
+        },
+        {
+          "name": "K8s-STRUCT-DTLK",
+          "url": "https://kubernete.dashboard.dtlk.strct.cluster.local",
+          "icon": "kubernetes",
+          "details": {
+            "nodes": 9,
+            "cpu": "240 Cores",
+            "memory": "849  GB",
+            "pods": 77,
+            "status": "Healthy",
+            "config": "/configs/struct-dtlk-cluster"
+          }
+        },
+        {
+          "name": "K8s-UNSTRUCT-DTLK",
+          "url": "https://kubernete.dashboard.dtlk.unstr.cluster.local",
+          "icon": "kubernetes",
+          "details": {
+            "nodes": 9,
+            "cpu": "240 Cores",
+            "memory": "849  GB",
+            "pods": 77,
+            "status": "Unhealthy",
+            "config": "/configs/unstruct-dtlk-cluster"
+          }
+        },
+        {
+          "name": "K8s-OLD-PROJECT",
+          "url": "https://kubernete.dashboard.old.projects.cluster.local",
+          "icon": "kubernetes",
+          "details": {
+            "nodes": 6,
+            "cpu": "72 Cores",
+            "memory": "424  GB",
+            "pods": 47,
+            "status": "Healthy",
+            "config": "/configs/old-project-cluster"
+          }
+        },
+        {
+          "name": "K8s-TEST-CLUSTER",
+          "url": "https://kubernete.dashboard.dtlk.unstr.cluster.local",
+          "icon": "kubernetes",
+          "details": {
+            "nodes": 6,
+            "cpu": "36 Cores",
+            "memory": "117  GB",
+            "pods": 40,
+            "status": "Healthy",
+            "config": "/configs/test-project-cluster"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Rancher",
+      "icon": "rancher",
+      "url": "https://rancher.server.infra.cluster.local",
+      "desc": "Enterprise Kubernetes"
+    }
+  ]
+}

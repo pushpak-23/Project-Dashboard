@@ -1,0 +1,90 @@
+affinity: {}
+annotations: {}
+autoscaling:
+  enabled: false
+  maxReplicas: 100
+  minReplicas: 1
+env: {}
+envs:
+  config: {}
+  configMappings: {}
+  secret: {}
+  secretMappings: {}
+existingConfigMap: ''
+existingSecret: ''
+extraContainers: ''
+fullnameOverride: ''
+hostAliases: {}
+image:
+  pullPolicy: IfNotPresent
+  registry: ghcr.io
+  repository: kafbat/kafka-ui
+  tag: latest
+imagePullSecrets: []
+ingress:
+  annotations: {}
+  enabled: false
+  host: null
+  ingressClassName: null
+  labels: {}
+  path: null
+  pathType: null
+  precedingPaths: null
+  succeedingPaths: null
+  tls:
+    enabled: null
+    secretName: null
+initContainers: {}
+labels: {}
+nameOverride: ''
+networkPolicy:
+  egressRules:
+    customRules: null
+  enabled: false
+  ingressRules:
+    customRules: null
+nodeSelector: {}
+podAnnotations: {}
+podLabels: {}
+podSecurityContext: {}
+probes:
+  liveness:
+    initialDelaySeconds: 10
+    periodSeconds: 30
+    timeoutSeconds: 10
+  readiness:
+    initialDelaySeconds: 10
+    periodSeconds: 30
+    timeoutSeconds: 10
+  useHttpsScheme: false
+replicaCount: 1
+resources: {}
+revisionHistoryLimit: null
+securityContext: {}
+service:
+  labels: {}
+  port: 80
+  type: LoadBalancer
+serviceAccount:
+  annotations: {}
+  create: true
+  name: ''
+tolerations: []
+volumeMounts: {}
+volumes: {}
+yamlApplicationConfig:
+  kafka:
+    clusters:
+      - bootstrapServers: kafka-32-1767935568:9092
+        name: My-Bitnami-Cluster
+        properties:
+          sasl.jaas.config: >-
+            org.apache.kafka.common.security.scram.ScramLoginModule required
+            username="admin" password="adm@kafka#INGST";
+          sasl.mechanism: SCRAM-SHA-256
+          security.protocol: SASL_PLAINTEXT
+yamlApplicationConfigConfigMap: {}
+yamlApplicationConfigSecret: {}
+global:
+  cattle:
+    systemProjectId: p-6tl8k

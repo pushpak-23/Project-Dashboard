@@ -1,0 +1,50 @@
+apiVersion: kibana.k8s.elastic.co/v1
+kind: Kibana
+metadata:
+  name: production-kb
+  namespace: elastic-system
+spec:
+  version: 9.0.0
+  count: 3
+  elasticsearchRef:
+    name: production-es
+    namespace: elastic-system
+  config:
+    monitoring.ui.ccs.enabled: false
+    monitoring.ui.container.elasticsearch.enabled: true
+  http:
+    service:
+      spec:
+        type: LoadBalancer
+  podTemplate:
+    spec:
+      containers:
+        - name: kibana
+          resources:
+            requests:
+              memory: 4Gi
+              cpu: 1
+            limits:
+              memory: 8Gi
+              cpu: 4
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 100
+              podAffinityTerm:
+                labelSelector:
+                  matchExpressions:
+                    - key: kibana.k8s.elastic.co/name
+                      operator: In
+                      values:
+                        - production-kb
+                topologyKey: kubernetes.io/hostname
+  monitoring:
+      metrics:
+        elasticsearchRefs:
+        - name: production-es
+          namespace: elastic-system
+      logs:
+        elasticsearchRefs:
+        - name: production-es
+          namespace: elastic-system
