@@ -1,0 +1,52 @@
+{
+  "items": [
+    {
+      "name": "Monitoring",
+      "logo": "grafana",
+      "children": [
+        {
+          "name": "Grafana",
+          "url": "https://grafana.local",
+          "logo": "grafana",
+          "desc": "Visualization platform for metrics and logs",
+          "configs": [
+            { "file": "grafana.ini", "path": "/configs/grafana.ini" }
+          ]
+        },
+        {
+          "name": "Prometheus",
+          "url": "https://prometheus.local",
+          "logo": "prometheus",
+          "desc": "Metrics collection and alerting system",
+          "configs": [
+            { "file": "prometheus.yml", "path": "/configs/prometheus.yml" }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "ELK",
+      "logo": "elasticsearch",
+      "children": [
+        {
+          "name": "Elasticsearch",
+          "url": "https://elastic.local",
+          "logo": "elasticsearch",
+          "desc": "Search and analytics engine",
+          "configs": [
+            { "file": "elasticsearch.yml", "path": "/configs/elasticsearch.yml" }
+          ]
+        },
+        {
+          "name": "Kibana",
+          "url": "https://192.168.176.111:5601",
+          "logo": "kibana",
+          "desc": "Visualization UI for Elasticsearch",
+          "configs": [
+            { "file": "kibana.yml", "path": "/configs/kibana.yml" }
+          ]
+        }
+      ]
+    }
+  ]
+}

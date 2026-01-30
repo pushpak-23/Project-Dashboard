@@ -1,0 +1,43 @@
+{
+  "openstack": [
+    {
+      "name": "Horizon",
+      "url": "https://vip.public.cloud",
+      "logo": "openstack",
+      "about": "Web dashboard for managing OpenStack services.",
+      "node": "controller01",
+      "ssh_user": "root",
+      "configs": [
+        { "file": "local_settings.py", "path": "/etc/openstack-dashboard/" },
+        { "file": "httpd.conf", "path": "/etc/httpd/conf.d/" }
+      ],
+      "logs": "/var/log/httpd/"
+    },
+    {
+      "name": "Nova",
+      "logo": "openstack",
+      "about": "Manages compute lifecycle.",
+      "node": "controller01",
+      "ssh_user": "root",
+      "configs": [
+        { "file": "nova.conf", "path": "/etc/nova/" }
+      ],
+      "logs": "/var/log/nova/"
+    }
+  ],
+  "ceph": [
+    {
+      "name": "Ceph Dashboard",
+      "url": "https://192.168.109.18:8443",
+      "logo": "ceph",
+      "about": "Storage cluster management UI.",
+      "node": "ceph01",
+      "ssh_user": "root",
+      "configs": [
+        { "file": "ceph.conf", "path": "/etc/ceph/" },
+        { "file": "admin.keyring", "path": "/etc/ceph/" }
+      ],
+      "logs": "/var/log/ceph/"
+    }
+  ]
+}

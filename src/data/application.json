@@ -1,0 +1,30 @@
+{
+  "applications": [
+    {
+      "name": "DF",
+      "url": "http://df.da.cdac.hyd.local",
+      "desc": "DF Tool Dashboard"
+    },
+    {
+      "name": "DDAT",
+      "url": "https://ddat.da.cdac.hyd.local",
+      "desc": "DDTA Dashboard"
+    },
+    {
+      "name": "Dort Console",
+      "url": "https://dort.da.cdac.hyd.local",
+      "desc": "Dort Console"
+    },
+    {
+      "name": "DLTNN",
+      "url": "https://dltnn.da.cdac.hyd.local",
+      "desc": "DLTNN Dashboard"
+    },
+    {
+      "name": "CT3",
+      "url": "https://ct3.da.cdac.hyd.local",
+      "desc": "DDTA Dashboard"
+    }
+    
+  ]
+}

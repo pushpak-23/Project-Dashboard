@@ -1,0 +1,58 @@
+{
+  "items": [
+    {
+      "name": "Security",
+      "logo": "vault",
+      "children": [
+        {
+          "name": "Wazuh",
+          "url": "https://wazuh.dashboard.infra.cluster.local",
+          "logo": "wazuh",
+          "desc": "Security monitoring and threat detection platform"
+        },
+        {
+          "name": "Falco",
+          "url": "https://falco.dashboard.infra.cluster.local",
+          "logo": "falco",
+          "desc": "Runtime security for containers and Kubernetes"
+        }
+      ]
+    },
+    {
+      "name": "IAM",
+      "logo": "keycloak",
+      "children": [
+        {
+          "name": "Keycloak",
+          "url": "https://keycloak.server.infra.cluster.local",
+          "logo": "keycloak",
+          "desc": "Identity and Access Management system"
+        },
+        {
+          "name": "LDAP",
+          "url": "https://ldap.local",
+          "logo": "openldap",
+          "desc": "Directory service for authentication and users"
+        }
+      ]
+    },
+    {
+      "name": "Network Security",
+      "logo": "cloudflare",
+      "children": [
+        {
+          "name": "pfSense",
+          "url": "https://192.168.101.1",
+          "logo": "pfsense",
+          "desc": "Firewall and routing platform"
+        },
+        {
+          "name": "Suricata",
+          "url": "https://suricata.ids.local",
+          "logo": "suricata",
+          "desc": "Intrusion detection and prevention system"
+        }
+      ]
+    }
+  ]
+}

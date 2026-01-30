@@ -1,0 +1,38 @@
+{
+  "tabs": ["infra", "dashboards", "lb", "druid", "solr"],
+
+  "infra": [
+    {"name":"Zabbix","ip":"192.168.176.37","url":"https://zabbix.dashboard.infra.cluster.local","iconUrl":"https://assets.zabbix.com/img/logo/zabbix_logo_500x131.png"},
+    {"name":"Rancher","ip":"192.168.176.37","url":"https://rancher.server.infra.cluster.local","icon":"rancher"},
+    {"name":"GitLab","ip":"192.168.176.37","url":"https://gitlab.server.infra.cluster.local","icon":"gitlab"},
+      {"name":"Harbor","ip":"192.168.176.37","url":"https://harbor.server.infra.cluster.local","icon":"harbor"},
+    {"name":"Nextcloud","ip":"192.168.176.37","url":"https://nextcloud.server.infra.cluster.local","icon":"nextcloud"}
+  ],
+
+  "dashboards": [
+    {"name":"Kubernetes","ip":"192.168.176.37","url":"https://kubernete.dashboard.infra.cluster.local","icon":"kubernetes"},
+      {
+    "name": "Wazuh",
+    "ip": "192.168.176.37",
+    "url": "https://wazuh.dashboard.infra.cluster.local",
+    "iconUrl": "data:image/png;base64,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"
+  },
+    {"name":"Kibana","ip":"192.168.145.38","url":"http://kibana.dashboard.dproc.serve.cluster.local:5601","icon":"kibana"}
+  ],
+
+  "lb": [
+    {"name":"Zabbix LB","ip":"192.168.176.58","url":"http://zabbix.lb.infra.cluster.local:80","iconUrl":"https://assets.zabbix.com/img/logo/zabbix_logo_500x131.png"}
+,
+    {"name":"Onyx LB","ip":"192.168.176.24","url":"http://onyx.lb.infra.cluster.local:80","icon":"nginx"}
+  ],
+
+  "druid": [
+    {"name":"Druid Coordinator","ip":"192.168.161.18","url":"http://cordinator.druid.lb.dtlk.strct.cluster.local:8081","icon":"apache"},
+    {"name":"Druid Broker","ip":"192.168.161.33","url":"http://broker.druid.lb.dtlk.strct.cluster.local:8082","icon":"apache"},
+    {"name":"Druid Router","ip":"192.168.161.41","url":"http://router.druid.lb.dtlk.strct.cluster.local:8888","icon":"apache"}
+  ],
+
+  "solr": [
+    {"name":"SolrCloud","ip":"192.168.162.159","url":"http://solrcloud.lb.dtlk.unstr.cluster.local:8983","icon":"apachesolr"}
+  ]
+}

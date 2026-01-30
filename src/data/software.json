@@ -1,0 +1,144 @@
+{
+  "softwares": [
+    {
+      "name": "Elasticsearch",
+      "url": "https://elastic.local",
+      "desc": "Search  Engine",
+      "icon": "elasticsearch",
+      "configs": [
+        { "file": "elasticsearch.yml", "path": "/etc/elasticsearch/" },
+        { "file": "jvm.options", "path": "/etc/elasticsearch/" }
+      ],
+      "yaml": "apiVersion: apps/v1\nkind: StatefulSet\nmetadata:\n  name: elasticsearch\nspec:\n  replicas: 3\n  serviceName: elastic\n",
+      "children": [
+        { "name": "Kibana", "url": "https://kibana.dproc.cloud:5601", "icon": "kibana" },
+        { "name": "Elasticsearch API", "url": "https://elastic.dproc.cloud:9200", "icon": "elasticsearch" }
+      ]
+    },
+
+    {
+      "name": "Solr Cluster",
+      "url": "https://solr.local",
+      "desc": "Enterprise Search Platform",
+      "icon": "solr",
+      "configs": [
+        { "file": "solr.xml", "path": "/var/solr/data/" },
+        { "file": "zoo.cfg", "path": "/etc/zookeeper/" }
+      ],
+      "children": [
+        { "name": "Solr Admin", "url": "http://solrcloud.lb.dtlk.unstr.cluster.local:8983", "icon": "solrcloud" },
+        { "name": "Solr API", "url": "https://solr.api.local:8983", "icon": "solr" }
+      ]
+    },
+
+    {
+      "name": "Redis",
+      "url": "https://redis.dproc.cloud",
+      "desc": "In-memory Data Store",
+      "icon": "redis",
+      "configs": [
+        { "file": "redis.conf", "path": "/etc/redis/" }
+      ]
+    },
+
+    {
+      "name": "MinIO",
+      "url": "https://minio.local",
+      "desc": "Object Storage",
+      "icon": "minio",
+      "configs": [
+        { "file": "config.json", "path": "/root/.minio/" }
+      ],
+      "children": [
+        { "name": "minio-api", "url": "http://minio.api.dtlk.cloud", "icon": "minio" },
+        { "name": "minio-console", "url": "http://minio.dashboard.dtlk.cloud", "icon": "minio" }
+      ]
+    },
+
+    {
+      "name": "Kafka",
+      "url": "https://kafka.local",
+      "desc": "Streaming Platform",
+      "icon": "kafka",
+      "configs": [
+        { "file": "kafka.yaml", "path": "/configs/kafka.yaml" },
+        { "file": "kafka-ui", "path": "/configs/kafka-ui.yaml" }
+      ],
+      "children": [
+        { "name": "Kafka API", "url": "https://kafka.api.ingst.cloud", "icon": "kafka" },
+        { "name": "Kafka UI", "url": "http://kafka.dashboard.ingst.cloud/", "icon": "kafka" },
+        { "name": "Kafka Broker 0", "url": "https://kafka.broker0.ingst.cloud", "icon": "kafka" },
+        { "name": "Kafka Controller 0", "url": "https://kafka.controller0.ingst.cloud", "icon": "kafka" }
+      ]
+    },
+
+    {
+      "name": "MongoDB",
+      "url": "https://mongo.local",
+      "desc": "NoSQL Database",
+      "icon": "mongodb",
+      "configs": [
+        { "file": "mongod.conf", "path": "/etc/mongod/" }
+      ],
+      "children": [
+        { "name": "MongoDB Atlas", "url": "https://mongo.lb.dtlk.unstr.cluster.local", "icon": "mongodb" },
+        { "name": "MongoDB API", "url": "https://mongo.api.local", "icon": "mongodb" }
+      ]
+    },
+
+    {
+      "name": "MariaDB",
+      "url": "https://mariadb.local",
+      "desc": "Relational Database",
+      "icon": "mariadb",
+      "configs": [
+        { "file": "my.cnf", "path": "/etc/mysql/" }
+      ],
+      "children": [
+        { "name": "MariaDB API", "url": "https://mariadb.api.local", "icon": "mariadb" },
+        { "name": "MariaDB Admin", "url": "https://mariadb.admin.local", "icon": "mariadb" }
+      ]
+    },
+
+    {
+      "name": "Harbor",
+      "url": "https://harbor.server.infra.cluster.local",
+      "desc": "Registry",
+      "icon": "harbor",
+      "configs": [
+        { "file": "harbor.yml", "path": "/data/harbor/" }
+      ]
+    },
+
+    {
+      "name": "Gitlab",
+      "url": "https://gitlab.gitlab.infra.cluster.local",
+      "desc": "Local Gitlab",
+      "icon": "gitlab",
+      "configs": [
+        { "file": "gitlab.rb", "path": "/etc/gitlab/" }
+      ],
+      "children": [
+        { "name": "Gitlab Dashboard", "url": "https://gitlab.gitlab.infra.cluster.local", "icon": "gitlab" },
+        { "name": "Gitlab Registry", "url": "https://registry.gitlab.infra.cluster.local", "icon": "gitlab" }
+      ]
+    },
+
+    {
+      "name": "Druid",
+      "url": "https://druid.server.dtlk.strct.cluster.local",
+      "desc": "Analytics Engine",
+      "icon": "druid",
+      "configs": [
+        { "file": "common.runtime.properties", "path": "/opt/druid/conf/" },
+        { "file": "jvm.config", "path": "/opt/druid/conf/" }
+      ],
+      "children": [
+        { "name": "Druid Dashboard", "url": "https://druid.server.dtlk.strct.cluster.local", "icon": "druid" },
+        { "name": "Druid Coordinator", "url": "https://cordinator.druid.lb.dtlk.strct.cluster.local", "icon": "druid" },
+        { "name": "Druid Broker", "url": "https://broker.druid.lb.dtlk.strct.cluster.local", "icon": "druid" },
+        { "name": "Druid Router", "url": "https://router.druid.lb.dtlk.strct.cluster.local", "icon": "druid" }
+      ]
+    }
+  ]
+}
