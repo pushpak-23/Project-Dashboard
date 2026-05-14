@@ -1,7 +1,7 @@
 <template>
   <div
     ref="sidebar"
-    class="bg-white/5 backdrop-blur-xl border border-white/10 rounded-[32px] p-6 flex flex-col gap-4 shadow-2xl"
+    class="flex flex-col gap-4 rounded-4xl border border-white/10 bg-white/5 p-6 shadow-2xl backdrop-blur-xl"
   >
     <h2 ref="title" class="text-center text-3xl font-extrabold text-teal-400">
       Security
@@ -23,15 +23,15 @@
 
       <!-- Dropdown -->
       <div
-        class="overflow-hidden max-h-0 group-hover:max-h-[300px] opacity-0 group-hover:opacity-100 translate-y-0 group-hover:translate-y-3 transition-all duration-500 mt-2 mb-4 flex flex-col gap-2 bg-slate-900/95 border border-teal-400/40 rounded-2xl p-4 shadow-2xl"
+        class="mt-2 mb-4 flex max-h-0 flex-col gap-2 overflow-hidden rounded-2xl border border-teal-400/40 bg-slate-900/95 p-4 opacity-0 shadow-2xl transition-all duration-500 group-hover:max-h-80 group-hover:translate-y-3 group-hover:opacity-100"
       >
         <div
           v-for="c in item.children"
           :key="c.name"
-          class="child group/child flex items-center justify-between gap-3 bg-white/5 border border-white/10 rounded-xl p-3 text-sm"
+          class="child group/child flex items-center justify-between gap-3 rounded-xl border border-white/10 bg-white/5 p-3 text-sm"
         >
           <!-- Click = Dashboard -->
-          <div class="flex-1 cursor-pointer" @click="go(c.url)">
+          <div class="min-w-0 flex-1 cursor-pointer" @click="go(c.url)">
             <h4 class="text-sm font-semibold text-teal-300">{{ c.name }}</h4>
             <p class="text-[11px] text-slate-300 break-all">{{ c.url }}</p>
           </div>
@@ -44,7 +44,7 @@
           <img
             v-if="c.logo"
             :src="`https://cdn.simpleicons.org/${c.logo}/14b8a6`"
-            class="w-6 h-6"
+            class="h-6 w-6 shrink-0"
             @error="hideImg"
           />
         </div>
@@ -54,10 +54,10 @@
 
   <!-- DETAILS PANEL -->
   <teleport to="body">
-    <div v-if="show" class="fixed inset-0 z-[9999] flex">
+    <div v-if="show" class="fixed inset-0 z-50 flex">
       <div
         ref="panel"
-        class="w-[30vw] min-w-[360px] bg-gradient-to-b from-slate-900 to-black p-6 border-l border-white/10 shadow-2xl overflow-y-auto"
+        class="h-full w-full max-w-xl overflow-y-auto border-l border-white/10 bg-linear-to-b from-slate-900 to-black p-6 shadow-2xl"
       >
         <div class="flex justify-between mb-4">
           <h2 class="text-2xl font-bold text-teal-300">{{ active.name }}</h2>
@@ -108,7 +108,9 @@
 <script setup>
 import { ref, onMounted, nextTick } from "vue";
 import { gsap } from "gsap";
-import data from "../data/rightSidebar.json";
+import { useDashboardResource } from "../composables/useDashboardResource";
+
+const { data } = useDashboardResource("rightsidebar", { items: [] });
 
 const sidebar = ref(null);
 const title = ref(null);

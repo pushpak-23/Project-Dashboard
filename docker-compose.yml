@@ -1,0 +1,10 @@
+services:
+  dashboard:
+    build:
+      context: .
+    ports:
+      - "3000:3001"
+    volumes:
+      - ./server/data:/app/server/data
+    environment:
+      PORT: 3001

@@ -1,6 +1,6 @@
 <template>
   <div
-    class="w-full bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-6 sm:p-8 md:p-10 shadow-2xl text-center"
+    class="w-full overflow-hidden rounded-3xl border border-white/10 bg-white/5 p-6 text-center shadow-2xl backdrop-blur-xl sm:p-8 md:p-10"
   >
     <h1 class="text-2xl sm:text-3xl font-bold text-sky-400 mb-6 sm:mb-8">
       Platform Layer
@@ -8,20 +8,23 @@
 
     <!-- Platform Tabs -->
     <div class="flex flex-col items-center relative">
-      <div class="flex w-full justify-evenly gap-4 sm:gap-6 mb-4">
+      <div
+        class="mb-4 grid w-full gap-3"
+        :style="{ gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))' }"
+      >
         <div
           v-for="p in data.platforms"
           :key="p.name"
-          class="platform-btn text-lg sm:text-xl font-semibold cursor-pointer px-4 sm:px-6 py-2 sm:py-3 rounded-xl border border-white/20 bg-white/5 text-white/80 hover:text-sky-300 transition-all duration-300 flex-grow text-center flex items-center justify-center gap-3"
+          class="platform-btn flex min-w-0 cursor-pointer items-center gap-3 rounded-2xl border border-white/20 bg-white/5 px-4 py-3 text-left text-lg font-semibold text-white/80 transition-all duration-300 hover:text-sky-300 sm:px-5 sm:text-xl"
           @mouseenter="p.clusters && showClusters(p)"
           @mouseleave="p.clusters && onPlatformLeave()"
           @click="onPlatformClick(p)"
         >
-          <span class="flex-2 text-center">{{ p.name }}</span>
+          <span class="min-w-0 flex-1 truncate">{{ p.name }}</span>
           <img
             v-if="p.icon"
             :src="`https://cdn.simpleicons.org/${p.icon}/38bdf8`"
-            class="w-14 h-14"
+            class="h-10 w-10 shrink-0 sm:h-11 sm:w-11 lg:h-12 lg:w-12"
             @error="$event.target.style.display = 'none'"
           />
         </div>
@@ -30,29 +33,31 @@
       <!-- Floating Cluster Panel -->
       <div
         ref="panel"
-        class="w-full h-full max-w-full bg-slate-900/95 border border-sky-400 rounded-2xl p-4 sm:p-6 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 opacity-0 scale-95 pointer-events-none shadow-xl overflow-hidden transition-all duration-300"
+        class="h-full w-full max-w-full overflow-hidden rounded-2xl border border-sky-400 bg-slate-900/95 p-4 opacity-0 shadow-xl transition-all duration-300 sm:p-6"
         :style="{ maxHeight: panelHeight + 'px' }"
         @mouseenter="onPanelEnter"
         @mouseleave="onPanelLeave"
       >
+        <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
         <!-- Cluster Card -->
         <div
           v-for="c in activeClusters"
           :key="c.name"
-          class="cluster-btn bg-white/5 border border-white/20 rounded-xl p-3 text-sm sm:text-base flex items-center gap-3 transition-all duration-300 cursor-pointer hover:scale-[1.03]"
+          class="cluster-btn flex min-w-0 cursor-pointer items-center gap-3 rounded-xl border border-white/20 bg-white/5 p-3 text-sm transition-all duration-300 hover:scale-[1.02] sm:text-base"
           @click="openDashboard(c.url)"
         >
           <img
             :src="`https://cdn.simpleicons.org/${c.icon}/38bdf8`"
-            class="w-8 h-8"
+            class="h-8 w-8 shrink-0"
             @error="$event.target.style.display = 'none'"
           />
-          <div class="text-left flex-1">
+          <div class="min-w-0 flex-1 text-left">
             <p class="font-semibold text-sky-300">{{ c.name }}</p>
             <p class="text-xs sm:text-sm text-slate-400">{{ c.ip }}</p>
           </div>
 
           <!-- Details Button -->
+        </div>
           <button
             class="detail-btn text-xs px-2 py-1 rounded-md border border-amber-400/40 text-amber-300 hover:bg-amber-400/20"
             @click.stop="openClusterDetails(c)"
@@ -105,8 +110,10 @@
 <script setup>
 import { ref, nextTick } from "vue";
 import gsap from "gsap";
-import data from "../data/platform.json";
 import DetailOverlay from "@/components/DetailOverlay.vue";
+import { useDashboardResource } from "../composables/useDashboardResource";
+
+const { data } = useDashboardResource("platform", { platforms: [] });
 
 const activeClusters = ref([]);
 const panel = ref(null);

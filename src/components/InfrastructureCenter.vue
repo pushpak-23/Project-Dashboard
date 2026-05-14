@@ -1,29 +1,29 @@
 <template>
   <div
-    class="w-full bg-[rgba(255,255,255,0.05)] backdrop-blur-xl border border-[rgba(255,255,255,0.1)] rounded-2xl p-6 shadow-2xl"
+    class="w-full overflow-hidden rounded-2xl border border-[rgba(255,255,255,0.1)] bg-[rgba(255,255,255,0.05)] p-6 shadow-2xl backdrop-blur-xl"
   >
     <h1 class="text-3xl font-extrabold text-red-400 mb-6 text-center">
       Infrastructure Layer
     </h1>
 
-    <div class="flex flex-col sm:flex-row gap-6">
+    <div class="flex flex-col gap-6 sm:flex-row">
       <!-- OpenStack -->
       <div
         class="flex-1 bg-[rgba(255,255,255,0.05)] border border-[rgba(255,255,255,0.2)] rounded-2xl p-5"
       >
         <h2 class="text-2xl text-red-400 mb-4 text-center">OpenStack</h2>
-        <div class="flex flex-wrap gap-3 justify-center">
+        <div class="flex flex-wrap justify-center gap-3">
           <div
             v-for="s in infra.openstack"
             :key="s.name"
-            class="service-btn group hover:border-red-400 hover:bg-[rgba(248,113,113,0.2)]"
+            class="service-btn group min-w-0 hover:border-red-400 hover:bg-[rgba(248,113,113,0.2)]"
             @click="onServiceClick(s)"
           >
             <img
               :src="`https://cdn.simpleicons.org/${s.logo}/D14A43`"
-              class="w-8 h-8"
+              class="h-8 w-8 shrink-0"
             />
-            <span class="flex-1">{{ s.name }}</span>
+            <span class="min-w-0 flex-1">{{ s.name }}</span>
 
             <!-- Details button (only on hover) -->
             <button
@@ -41,18 +41,18 @@
         class="flex-1 bg-[rgba(255,255,255,0.05)] border border-[rgba(255,255,255,0.2)] rounded-2xl p-5"
       >
         <h2 class="text-2xl text-orange-400 mb-4 text-center">Ceph</h2>
-        <div class="flex flex-wrap gap-3 justify-center">
+        <div class="flex flex-wrap justify-center gap-3">
           <div
             v-for="s in infra.ceph"
             :key="s.name"
-            class="service-btn group hover:border-red-400 hover:bg-[rgba(248,113,113,0.2)]"
+            class="service-btn group min-w-0 hover:border-red-400 hover:bg-[rgba(248,113,113,0.2)]"
             @click="onServiceClick(s)"
           >
             <img
               :src="`https://cdn.simpleicons.org/${s.logo}/FB923C`"
-              class="w-8 h-8"
+              class="h-8 w-8 shrink-0"
             />
-            <span class="flex-1">{{ s.name }}</span>
+            <span class="min-w-0 flex-1">{{ s.name }}</span>
 
             <button
               class="ml-auto text-xs px-2 py-1 rounded border border-amber-400/40 text-amber-300 hover:bg-amber-400/20 transition opacity-0 scale-90 group-hover:opacity-100 group-hover:scale-100"
@@ -67,10 +67,10 @@
 
     <!-- DETAILS OVERLAY -->
     <teleport to="body">
-      <div v-if="show" class="fixed inset-0 z-[9999] flex">
+      <div v-if="show" class="fixed inset-0 z-50 flex">
         <div
           ref="panel"
-          class="w-[30vw] min-w-[360px] bg-gradient-to-b from-slate-900 to-black p-6 border-r border-[rgba(255,255,255,0.1)] shadow-2xl"
+          class="h-full w-full max-w-xl overflow-y-auto border-r border-[rgba(255,255,255,0.1)] bg-linear-to-b from-slate-900 to-black p-6 shadow-2xl"
         >
           <div class="flex justify-between mb-4">
             <h2 class="text-2xl font-bold text-emerald-400">
@@ -174,7 +174,12 @@
 <script setup>
 import { ref, nextTick } from "vue";
 import gsap from "gsap";
-import infra from "../data/infrastructure.json";
+import { useDashboardResource } from "../composables/useDashboardResource";
+
+const { data: infra } = useDashboardResource("infrastructure", {
+  openstack: [],
+  ceph: [],
+});
 
 const show = ref(false);
 const active = ref({});

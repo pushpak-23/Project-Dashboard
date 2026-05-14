@@ -19,6 +19,12 @@ export default defineConfig({
   server: {
     host: true,        // allows access from network (same as 0.0.0.0)
     port: 5174,        // optional (default is 5173)
-    strictPort: true  // optional: fail if port is already used
+    strictPort: true,  // optional: fail if port is already used
+    proxy: {
+      '/api': {
+        target: 'http://127.0.0.1:3001',
+        changeOrigin: true
+      }
+    }
   }
 })

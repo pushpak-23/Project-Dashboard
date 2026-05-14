@@ -25,6 +25,26 @@ See [Vite Configuration Reference](https://vite.dev/config/).
 npm install
 ```
 
+## Run the API
+
+```sh
+npm run server
+```
+
+The dashboard reads from the local SQLite database exposed by the API.
+
+## Add Entries
+
+Use the "Add Entry" button in the app header to save a new record into SQLite. The dashboard will refresh after the save completes.
+
+## Docker
+
+```sh
+docker compose up --build
+```
+
+Open the app at `http://localhost:3000`.
+
 ### Compile and Hot-Reload for Development
 
 ```sh

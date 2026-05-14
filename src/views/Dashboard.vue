@@ -1,30 +1,32 @@
 <template>
   <div
-    class="min-h-screen w-full grid grid-cols-12 gap-4 p-4 sm:p-6 bg-gradient-to-r from-gray-900 via-indigo-900 to-black"
+    class="relative isolate min-h-screen w-full overflow-x-hidden bg-linear-to-r from-gray-900 via-indigo-900 to-black px-3 py-4 sm:px-6 sm:py-6"
   >
     <div class="absolute inset-0 -z-10 pointer-events-none">
       <div class="drop drop-1"></div>
       <div class="drop drop-2"></div>
       <div class="drop drop-3"></div>
     </div>
-    <!-- LEFT SIDEBAR -->
-    <aside class="col-span-12 md:col-span-2 h-full">
-      <LeftSidebar class="h-full" />
-    </aside>
+    <div class="mx-auto grid w-full max-w-screen-2xl grid-cols-1 gap-5 xl:grid-cols-[300px_minmax(0,1fr)_300px] xl:items-start">
+      <!-- LEFT SIDEBAR -->
+      <aside class="h-full xl:sticky xl:top-6 xl:self-start">
+        <LeftSidebar class="h-full" />
+      </aside>
 
-    <!-- CENTER CONTENT -->
-    <main class="col-span-12 md:col-span-8 flex flex-col gap-8">
-      <ApplicationLayer />
-      <SoftwareLayer />
-      <PlatformLayer />
-      <InfrastructureCenter />
-      <HardwareLayer />
-    </main>
+      <!-- CENTER CONTENT -->
+      <main class="min-w-0 flex flex-col gap-6">
+        <ApplicationLayer />
+        <SoftwareLayer />
+        <PlatformLayer />
+        <InfrastructureCenter />
+        <HardwareLayer />
+      </main>
 
-    <!-- RIGHT SIDEBAR -->
-    <aside class="col-span-12 md:col-span-2 h-full">
-      <RightSidebar class="h-full" />
-    </aside>
+      <!-- RIGHT SIDEBAR -->
+      <aside class="h-full xl:sticky xl:top-6 xl:self-start">
+        <RightSidebar class="h-full" />
+      </aside>
+    </div>
   </div>
 </template>
 

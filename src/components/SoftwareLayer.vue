@@ -1,6 +1,6 @@
 <template>
   <div
-    class="bg-white/5 backdrop-blur-xl border border-white/10 rounded-[32px] p-8 shadow-2xl"
+    class="overflow-hidden rounded-4xl border border-white/10 bg-white/5 p-6 shadow-2xl backdrop-blur-xl sm:p-8"
   >
     <h1 class="text-center text-3xl font-extrabold text-emerald-400 mb-10">
       Software Layer
@@ -8,7 +8,7 @@
 
     <div
       ref="grid"
-      class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-8"
+      class="grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4"
     >
       <div
         v-for="s in data.softwares"
@@ -20,7 +20,7 @@
         <!-- Card -->
         <div
           :class="[
-            'card relative z-10 rounded-2xl border p-5 cursor-pointer backdrop-blur-xl bg-white/5 transition-all duration-300',
+            'card relative z-10 cursor-pointer overflow-hidden rounded-2xl border bg-white/5 p-5 backdrop-blur-xl transition-all duration-300',
             active === s.name
               ? 'border-emerald-400 shadow-[0_20px_40px_rgba(52,211,153,0.25)] scale-[1.03]'
               : 'border-white/10 hover:border-emerald-500/50',
@@ -28,7 +28,7 @@
           @click="!s.children && go(s.url)"
         >
           <div class="flex items-center justify-between gap-4">
-            <div class="flex-grow pr-8">
+            <div class="min-w-0 flex-1 pr-4">
               <h2
                 class="text-lg font-bold mb-2"
                 :class="active === s.name ? 'text-emerald-300' : 'text-white'"
@@ -43,7 +43,7 @@
               :src="`https://cdn.simpleicons.org/${normalizeIcon(
                 s.icon
               )}/6EE7B7`"
-              class="logo w-10 h-10"
+              class="logo h-9 w-9 shrink-0 sm:h-10 sm:w-10"
               @error="onIconError"
             />
           </div>
@@ -75,10 +75,10 @@
             <div
               v-for="c in s.children"
               :key="c.name"
-              class="child flex items-center gap-4 bg-white/5 border border-white/10 rounded-xl p-3 cursor-pointer"
+              class="child flex items-center gap-4 rounded-xl border border-white/10 bg-white/5 p-3 cursor-pointer"
               @click.stop="go(c.url)"
             >
-              <div class="flex-grow">
+              <div class="min-w-0 flex-1">
                 <h3 class="text-sm font-semibold text-emerald-300">
                   {{ c.name }}
                 </h3>
@@ -89,7 +89,7 @@
                 :src="`https://cdn.simpleicons.org/${normalizeIcon(
                   c.icon
                 )}/6EE7B7`"
-                class="logo w-8 h-8"
+                class="logo h-8 w-8 shrink-0"
                 @error="onIconError"
               />
             </div>
@@ -105,9 +105,9 @@
 
     <!-- DETAILS OVERLAY -->
     <teleport to="body">
-      <div v-if="showClusterDetail" class="fixed inset-0 z-[9999] flex">
+      <div v-if="showClusterDetail" class="fixed inset-0 z-50 flex">
         <div
-          class="w-[30vw] min-w-[360px] bg-gradient-to-b from-slate-900 to-black p-6 border-r border-white/10 shadow-2xl overflow-y-auto"
+          class="h-full w-full max-w-xl overflow-y-auto border-r border-white/10 bg-linear-to-b from-slate-900 to-black p-6 shadow-2xl"
         >
           <div class="flex justify-between mb-4">
             <h2 class="text-2xl font-bold text-amber-300">
@@ -186,7 +186,9 @@
 <script setup>
 import { ref, onMounted, nextTick } from "vue";
 import gsap from "gsap";
-import data from "../data/software.json";
+import { useDashboardResource } from "../composables/useDashboardResource";
+
+const { data } = useDashboardResource("software", { softwares: [] });
 
 const active = ref(null);
 const grid = ref(null);

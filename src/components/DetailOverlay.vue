@@ -1,10 +1,10 @@
 <template>
   <teleport to="body">
-    <div v-if="show" class="fixed inset-0 z-[9999] flex">
+    <div v-if="show" class="fixed inset-0 z-50 flex">
       <!-- LEFT Panel -->
       <div
         ref="panel"
-        class="h-full w-[30vw] min-w-[360px] max-w-[520px] bg-gradient-to-b from-slate-900 via-slate-900/95 to-black border-r border-white/10 shadow-[0_0_80px_rgba(0,0,0,0.8)] p-6 overflow-y-auto"
+        class="h-full w-full max-w-xl overflow-y-auto border-r border-white/10 bg-linear-to-b from-slate-900 via-slate-900/95 to-black p-6 shadow-[0_0_80px_rgba(0,0,0,0.8)]"
       >
         <!-- Header -->
         <div class="flex justify-between items-center mb-6">

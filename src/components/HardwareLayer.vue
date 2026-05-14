@@ -1,18 +1,18 @@
 <template>
   <div
-    class="w-full bg-white/5 backdrop-blur-xl border border-white/10 rounded-[32px] p-6 sm:p-8 md:p-10 shadow-2xl text-center"
+    class="w-full overflow-hidden rounded-4xl border border-white/10 bg-white/5 p-6 text-center shadow-2xl backdrop-blur-xl sm:p-8 md:p-10"
   >
     <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-300 mb-6 sm:mb-8">
       Hardware Layer
     </h1>
 
     <!-- Categories -->
-    <div class="flex flex-col items-center relative">
-      <div class="flex w-full justify-evenly gap-4 sm:gap-6 mb-4">
+    <div class="relative flex flex-col items-center">
+      <div class="mb-4 grid w-full gap-3 sm:grid-cols-3">
         <div
           v-for="cat in data.categories"
           :key="cat"
-          class="card group relative overflow-hidden text-lg sm:text-xl font-semibold cursor-pointer px-4 sm:px-6 py-2 sm:py-3 rounded-2xl bg-white/5 border border-white/10 text-slate-300 transition-all duration-300 flex-grow hover:border-slate-400/60 hover:text-white"
+          class="card group relative cursor-pointer overflow-hidden rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-lg font-semibold text-slate-300 transition-all duration-300 hover:border-slate-400/60 hover:text-white sm:text-xl"
           @mouseenter="showDevices(cat)"
           @mouseleave="onCategoryLeave"
         >
@@ -23,23 +23,24 @@
       <!-- Device Panel -->
       <div
         ref="panel"
-        class="w-full bg-slate-900/95 border border-white/20 rounded-2xl p-4 sm:p-6 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 opacity-0 scale-95 pointer-events-none shadow-2xl overflow-hidden transition-all duration-300"
+        class="w-full overflow-hidden rounded-2xl border border-white/20 bg-slate-900/95 p-4 opacity-0 shadow-2xl transition-all duration-300 sm:p-6"
         :style="{ maxHeight: panelHeight + 'px' }"
         @mouseenter="onPanelEnter"
         @mouseleave="onPanelLeave"
       >
+        <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
         <div
           v-for="d in activeDevices"
           :key="d.name"
-          class="child bg-white/5 border border-white/10 rounded-xl p-3 flex items-center gap-3 cursor-pointer hover:border-slate-400 transition"
+          class="child flex cursor-pointer items-center gap-3 rounded-xl border border-white/10 bg-white/5 p-3 transition hover:border-slate-400"
           @click="openIDRAC(d.url)"
         >
           <img
             :src="`https://cdn.simpleicons.org/${d.icon}/d1d5db`"
-            class="w-8 h-8"
+            class="h-8 w-8 shrink-0"
             @error="$event.target.style.display = 'none'"
           />
-          <div class="flex-1 text-left">
+          <div class="min-w-0 flex-1 text-left">
             <p class="font-semibold text-slate-200">{{ d.name }}</p>
             <p class="text-xs text-slate-400">Mgmt: {{ d.mgmt_ip }}</p>
             <p class="text-xs text-slate-500">SSH: {{ d.internal_ip }}</p>
@@ -56,16 +57,17 @@
             </button>
           </div>
         </div>
+        </div>
       </div>
     </div>
 
     <!-- PREMIUM DETAILS OVERLAY -->
     <teleport to="body">
-      <div v-if="showDetail" class="fixed inset-0 z-[9999] flex">
+      <div v-if="showDetail" class="fixed inset-0 z-50 flex">
         <!-- Panel -->
         <div
           ref="detailPanel"
-          class="w-[30vw] min-w-[360px] bg-gradient-to-b from-slate-900 via-slate-900/95 to-black border-r border-white/10 shadow-[0_0_80px_rgba(0,0,0,0.8)] p-6 backdrop-blur-xl"
+          class="h-full w-full max-w-xl overflow-y-auto border-r border-white/10 bg-linear-to-b from-slate-900 via-slate-900/95 to-black p-6 shadow-[0_0_80px_rgba(0,0,0,0.8)] backdrop-blur-xl"
         >
           <div class="flex justify-between items-center mb-6">
             <h2 class="text-2xl font-extrabold text-emerald-400">
@@ -130,7 +132,9 @@
 <script setup>
 import { ref, nextTick, watch } from "vue";
 import gsap from "gsap";
-import data from "../data/hardware.json";
+import { useDashboardResource } from "../composables/useDashboardResource";
+
+const { data } = useDashboardResource("hardware", { categories: [], compute: [], storage: [], network: [] });
 
 const activeDevices = ref([]);
 const panel = ref(null);
